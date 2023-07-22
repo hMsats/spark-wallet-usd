@@ -12,7 +12,7 @@ HOW I RUN IT ON UBUNTU LINUX:
 
 git clone https://github.com/hMsats/spark-wallet-usd.git
 
-cd spark-wallet-euro
+cd spark-wallet-usd
 
 npm install
 
@@ -30,7 +30,7 @@ and are the same "LetsEncrypt" signed files as used by my website "bitcoinserver
 
 Run Spark:
 
-/home/user/spark-wallet-euro/dist/cli.js --host 0.0.0.0 --tls-name bitcoinserver.nl --port 9737 --ln-path /media/ssd/.lightning/bitcoin --login &lt;username&gt;:&lt;some large number&gt; &gt;& out_spark.txt &
+/home/user/spark-wallet-usd/dist/cli.js --host 0.0.0.0 --tls-name bitcoinserver.nl --port 9737 --ln-path /media/ssd/.lightning/bitcoin --login &lt;username&gt;:&lt;some large number&gt; &gt;& out_spark.txt &
 
 I then open spark-wallet in the address bar of a browser like this:
 bitcoinserver.nl:9737
