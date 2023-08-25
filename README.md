@@ -2,13 +2,13 @@
 
 <b>This fork of Spark-wallet shows prices in USD plus Bolt12 offers working.
 
-Compatible with Core Lightning version v23.05 with `experimental-offers` in config mandatory. 
+Compatible with Core Lightning version v23.05 or higher with `experimental-offers` in config mandatory. 
 
 The `allow-deprecated-apis=false` is optional in config.
 
 Note: the euro version can be found [here](https://github.com/hMsats/spark-wallet-euro.git)
 
-HOW I RUN IT ON UBUNTU LINUX:
+HOW I RUN SPARK WALLET ON UBUNTU LINUX:
 
 git clone https://github.com/hMsats/spark-wallet-usd.git
 
