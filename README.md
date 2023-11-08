@@ -16,6 +16,8 @@ cd spark-wallet-usd
 
 npm install
 
+npm install babel
+
 npm run dist:npm
 
 Open port 9737 on your modem/router
