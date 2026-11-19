@@ -25,7 +25,7 @@ exports.parseRes = ({ HTTP, SSE }) => {
 
   // Pay attempt results, including failed payments. This is the only stream (apart from
   // error$) that includes errors.
-  , payResult$ = HTTP.select('_pay').flatMap(r$ => r$.map(r => r.body).catch(err =>
+  , payResult$ = HTTP.select('_xpay').flatMap(r$ => r$.map(r => r.body).catch(err =>
       err.response?.body?.type == 'lightning' ? O.of({ err, pay: r$.request.ctx.pay }) : O.empty()))
 
   return {
@@ -67,7 +67,7 @@ exports.makeReq = ({ viewPay$, confPay$, offerPay$, offerRecv$, newInv$, goLogs$
 
   // Initiated by user actions
   viewPay$.map(paystr => [ '_decodecheck',     [ paystr ], { paystr } ])
-, confPay$.map(pay    => [ '_pay',             [ pay.paystr, pay.custom_msat ], { pay, bg: true } ])
+, confPay$.map(pay    => [ '_xpay',             [ pay.paystr, pay.custom_msat ], { pay, bg: true } ])
 , newInv$.map(inv => !inv.reusable_offer
                        ? [ 'invoice',          [ inv.amount_msat, inv.label, inv.description, INVOICE_TTL ], inv ]
                        : [ 'offer',            [ inv.amount_msat, inv.description, null, inv.label ], inv ])

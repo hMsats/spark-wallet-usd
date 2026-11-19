@@ -100,9 +100,9 @@ export const commands = {
 
   // Pay the given invoice, emit an event that can be observed externally (by stream.js),
   // and return it with the invoice metadata.
-, async _pay(paystr, ...args) {
+, async _xpay(paystr, ...args) {
     this.emit('paying', paystr)
-    const pay_result = await this.pay(paystr, ...args)
+    const pay_result = await this.call('xpay', [paystr, ...args])
     await attachInvoiceMeta(this, pay_result)
     return pay_result
   }
@@ -189,12 +189,11 @@ export async function attachInvoiceMeta(ln, obj) {
       const invoice = await ln._decode(obj.bolt11 || obj.bolt12)
       extendInvoiceMeta(obj, invoice)
     } catch (e) {
-      console.error('Failed decoding payment string:', {
-      type: obj.bolt12 ? 'BOLT12' : 'BOLT11',
-      error: e.message
-      })
+      // This can happen for BOLT12 invoices created with v0.10.0 after the v0.10.1 release date.
+      // Report the error and ignore it.
+      if (obj.bolt12) console.error('Failed decoding pay string, deprecated old-style bolt12?', obj)
+      else throw e
     }
-
   }
 }
 
